@@ -14,6 +14,15 @@
  *      There have been some "todo" notes which can be helpful in finding things to change in the code.
  */
 
+/*
+ * File: part2.c
+ * Author/Editor: Keiane Balicanta
+ * Course (Section): Embedded Systems (Section 3)
+ * Assignment: Lab 2 - Part 2
+ * Date: 1 FEB 2023
+ * Version: 1.0
+ * Description: Change button press to switch blinking LEDs from red->green and green->red
+ */
 
 #include <msp430.h>
 
@@ -26,6 +35,8 @@ int main(void)
     // Configure GPIO
     P1OUT &= ~BIT0;                         // Clear P1.0 output latch for a defined power-on state
     P1DIR |= BIT0;                          // Set P1.0 to output direction
+    P6OUT &= ~BIT6;                         // Clear P6.6 output latch for a defined power-on state
+    P6DIR |= BIT6;                          // Set P6.6 to output direction
 
     // @TODO You need to add in the configuration for the Green LED
 
@@ -45,10 +56,16 @@ int main(void)
     while(1)
     {
         // @TODO You will need to modify this code to change between blinking the Red LED or the Green LED
-        if (ToggleEnable)
+        if (ToggleEnable){
             P1OUT ^= BIT0;                  // P1.0 = toggle
-        else
+            P6OUT &= ~BIT6;                 // Set P6.6 to 0
+        }
+        else{
             P1OUT &= ~BIT0;                 // Set P1.0 to 0
+            P6OUT ^= BIT6;                  // P6.6 = toggle
+        }
+
+
         __delay_cycles(100000);
     }
 }
@@ -60,5 +77,6 @@ __interrupt void Port_2(void)
     // @TODO You might need to modify this based on your approach to the lab
     P2IFG &= ~BIT3;                         // Clear P1.3 IFG
     ToggleEnable ^= 0x01;                   // Enable if the toggle should be active
+
 }
 
