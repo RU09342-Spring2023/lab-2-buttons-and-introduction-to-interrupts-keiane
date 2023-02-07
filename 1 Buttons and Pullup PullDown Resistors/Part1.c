@@ -19,6 +19,17 @@ void gpioInit();
 /**
  * main.c
  */
+
+/*
+ * File: part1.c
+ * Author/Editor: Keiane Balicanta
+ * Course (Section): Embedded Systems (Section 3)
+ * Assignment: Lab 2 - Part 1
+ * Date: 1 FEB 2023
+ * Version: 1.0
+ * Description: This is part 1 of the lab 2 which blinks the LEDs based on the corresponding button press.
+ */
+
 int main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
@@ -32,9 +43,10 @@ int main(void)
 
     while(1)
     {
-        if (P2IN & BIT3)            // If S2 (P2.3) is pressed
+        // Pullup resistor means that the button not pressed is active high
+        if (!(P2IN & BIT3))             // If S2 (P2.3) is not pressed
             P6OUT ^= BIT6;          // Toggle P6.6
-        if (P4IN & BIT1)            // If S1 (P4.1) is pressed
+        if (!(P4IN & BIT1))            // If S1 (P4.1) is not pressed
             P1OUT ^= BIT0;          // Toggle P1.0
         __delay_cycles(100000);             // Delay for 100000*(1/MCLK)=0.1s
     }
@@ -67,3 +79,4 @@ void gpioInit()
        P4REN |= BIT1;               // Enable Resistor on P4.1
        P4OUT |= BIT1;               // Configure Resistor on P4.1 to be Pullup
 }
+
