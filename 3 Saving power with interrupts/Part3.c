@@ -12,6 +12,16 @@
  *      You will need to update the README for this part with the screenshots.
  */
 
+/*
+ * File: part3.c
+ * Author/Editor: Keiane Balicanta
+ * Course (Section): Embedded Systems (Section 3)
+ * Assignment: Lab 2 - Part 3
+ * Date: 1 FEB 2023
+ * Version: 1.0
+ * Description: This is part 3 of the lab 2 which does something insert description here
+ */
+
 #include <msp430.h>
 
 
@@ -22,9 +32,9 @@ int main(){
 
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
 
-    //runCodeWithSoftwarePolling();
+    runCodeWithSoftwarePolling();
 
-    runCodeWithInterrupts();
+    //runCodeWithInterrupts();
 
     return 0;
 }
