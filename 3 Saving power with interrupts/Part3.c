@@ -19,7 +19,8 @@
  * Assignment: Lab 2 - Part 3
  * Date: 1 FEB 2023
  * Version: 1.0
- * Description: This is part 3 of the lab 2 which does something insert description here
+ * Description: This is part 3 of the lab 2 which uses energy trace to analyze the power consumption of two different
+ * methods, polling and interrupts.
  */
 
 #include <msp430.h>
